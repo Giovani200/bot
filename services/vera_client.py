@@ -9,22 +9,15 @@ class VeraClient:
         self.api_url = settings.vera_api_url
         self.api_key = settings.vera_api_key
         self.headers = {
-            "Authorization": f"Bearer {self.api_key}",
+            "X-API-Key": self.api_key,
             "Content-Type": "application/json"
         }
         logger.info(f"VeraClient initialisé avec l'URL: {self.api_url}")
     
     async def fact_check(self, query: str, user_id: str) -> VeraResponse:
-        request_data = VeraRequest(
-            user_id=user_id,
-            query=query,
-            stream=False
-        )
-        
         payload = {
-            "user_id": request_data.user_id,
-            "query": request_data.query,
-            "stream": request_data.stream
+            "query": query,
+            "user_id": user_id
         }
         
         try:
@@ -35,10 +28,13 @@ class VeraClient:
                     headers=self.headers
                 )
                 
+                logger.info(f"Vera response status: {response.status_code}")
+                logger.debug(f"Vera response body: {response.text}")
+                
                 if response.status_code == 200:
                     data = response.json()
                     
-                    answer = data.get("answer", data.get("response", "Aucune réponse"))
+                    answer = data.get("answer", data.get("response", data.get("message", "Aucune réponse")))
                     sources = data.get("sources", [])
                     
                     logger.info(f"Fact-check réussi pour user {user_id}")
@@ -49,7 +45,7 @@ class VeraClient:
                         sources=sources
                     )
                 else:
-                    error_msg = f"Erreur API Vera: {response.status_code}"
+                    error_msg = f"Erreur API Vera: {response.status_code} - {response.text}"
                     logger.error(error_msg)
                     return VeraResponse(
                         success=False,
