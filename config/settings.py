@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     telegram_bot_token: str = Field(..., env="TELEGRAM_BOT_TOKEN")
     
     gemini_api_key: str = Field(..., env="GEMINI_API_KEY")
-    gemini_model: str = Field(default="gemini-1.5-pro-latest", env="GEMINI_MODEL")
+    gemini_model: str = Field(default="gemini-2.5-pro", env="GEMINI_MODEL")
     
     vera_api_key: str = Field(..., env="VERA_API_KEY")
     vera_api_url: str = Field(..., env="VERA_API_URL")

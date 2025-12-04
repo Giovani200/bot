@@ -17,7 +17,7 @@ class VeraClient:
     async def fact_check(self, query: str, user_id: str) -> VeraResponse:
         payload = {
             "query": query,
-            "user_id": user_id
+            "userId": user_id
         }
         
         try:

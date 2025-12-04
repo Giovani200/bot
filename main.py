@@ -27,7 +27,6 @@ Bienvenue ! Je vérifie la véracité des informations.
 💡 *Comment m'utiliser :*
 Envoyez-moi simplement du contenu et j'analyserai les affirmations factuelles.
 
-🔍 Propulsé par Gemini & Vera API
     """
     await update.message.reply_text(welcome_message, parse_mode="Markdown")
     logger.info(f"Commande /start de {update.effective_user.id}")
