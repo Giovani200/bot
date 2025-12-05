@@ -24,15 +24,10 @@ def format_fact_check_response(
     if content_summary:
         response_parts.append(f"📋 *Contenu analysé :*\n{content_summary}\n\n")
     
-    if claims and len(claims) > 0:
-        response_parts.append(f"🎯 *Affirmations détectées :*\n")
-        for i, claim in enumerate(claims[:3], 1):
-            response_parts.append(f"{i}. _{claim}_\n")
-        response_parts.append("\n")
     
     response_parts.append(f"🔍 *Vérification factuelle :*\n{vera_response}\n")
     response_parts.append("\n━━━━━━━━━━━━━━━━━━━━")
-    response_parts.append("\n💡 _Envoyez-moi du contenu à vérifier !_")
+    response_parts.append("\n💡 _Un doute sur une autre info ? Envoie, je m’en occupe !_")
     
     return "".join(response_parts)
 

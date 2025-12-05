@@ -15,7 +15,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     welcome_message = """
 🤖 *Bot de Fact-Checking Vera*
 
-Bienvenue ! Je vérifie la véracité des informations.
+Si t'es là c'est ce ue doute de la véracité de ton contenu.
+Et bien tu es au bon endroit !
 
 📝 *Ce que je peux analyser :*
 • Textes et questions
